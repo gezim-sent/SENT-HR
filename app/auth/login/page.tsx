@@ -56,9 +56,8 @@ export default function LoginPage() {
       provider: 'google',
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
-        hd: 'sent.dm', // Google OAuth hint — only show @sent.dm accounts
         queryParams: {
-          hd: 'sent.dm', // hosted domain restriction
+          hd: 'sent.dm',
           prompt: 'select_account',
         },
       },
@@ -96,7 +95,7 @@ export default function LoginPage() {
             )}
 
             {/* Google login — primary */}
-            {/* <button
+            <button
               onClick={handleGoogleLogin}
               disabled={googleLoading}
               className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl border border-zinc-200 bg-white hover:bg-zinc-50 transition-colors font-medium text-sm text-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
@@ -115,13 +114,13 @@ export default function LoginPage() {
                 </svg>
               )}
               {googleLoading ? 'Signing in…' : 'Continue with Google'}
-            </button> */}
+            </button>
 
-            {/* <div className="text-xs text-zinc-400 text-center flex items-center gap-2">
+            <div className="text-xs text-zinc-400 text-center flex items-center gap-2">
               <div className="flex-1 h-px bg-zinc-100" />
               <span>or sign in with email</span>
               <div className="flex-1 h-px bg-zinc-100" />
-            </div> */}
+            </div>
 
             {/* Email / password */}
             <form onSubmit={handleEmailLogin} className="space-y-3">
