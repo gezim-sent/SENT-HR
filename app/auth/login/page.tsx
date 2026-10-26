@@ -67,7 +67,6 @@ export default function LoginPage() {
       setGoogleLoading(false)
       setError(oauthError.message)
     }
-    // If successful, Google redirects — no need to set loading false
   }
 
   return (
@@ -94,7 +93,7 @@ export default function LoginPage() {
               </div>
             )}
 
-            {/* Google login — primary */}
+            {/* Google login */}
             <button
               onClick={handleGoogleLogin}
               disabled={googleLoading}
@@ -156,7 +155,6 @@ export default function LoginPage() {
             </form>
           </div>
 
-          {/* Footer note */}
           <div className="px-6 py-3.5 bg-zinc-50 border-t border-zinc-100 text-center">
             <p className="text-xs text-zinc-400">
               🔒 Only <span className="font-medium text-zinc-600">@sent.dm</span> accounts can access this platform
