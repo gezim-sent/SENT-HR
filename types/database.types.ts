@@ -14,6 +14,53 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_log: {
+        Row: {
+          action: string
+          changes: Json | null
+          created_at: string
+          entity: string
+          entity_id: string | null
+          entity_name: string | null
+          id: string
+          ip_address: string | null
+          metadata: Json | null
+          performed_by: string | null
+        }
+        Insert: {
+          action: string
+          changes?: Json | null
+          created_at?: string
+          entity: string
+          entity_id?: string | null
+          entity_name?: string | null
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          performed_by?: string | null
+        }
+        Update: {
+          action?: string
+          changes?: Json | null
+          created_at?: string
+          entity?: string
+          entity_id?: string | null
+          entity_name?: string | null
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          performed_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_log_performed_by_fkey"
+            columns: ["performed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       departments: {
         Row: {
           created_at: string
@@ -58,45 +105,60 @@ export type Database = {
       }
       documents: {
         Row: {
+          category: string
           created_at: string
+          document_number: string | null
           employee_id: string
           expiry_date: string | null
+          has_us_visa: boolean | null
           id: string
           issued_date: string | null
           issuer: string | null
           name: string
+          nationality: string | null
           notes: string | null
+          scope: string
           size_bytes: number | null
           storage_path: string
-          type: Database["public"]["Enums"]["doc_type"]
+          type: string
           uploaded_by: string
         }
         Insert: {
+          category?: string
           created_at?: string
+          document_number?: string | null
           employee_id: string
           expiry_date?: string | null
+          has_us_visa?: boolean | null
           id?: string
           issued_date?: string | null
           issuer?: string | null
           name: string
+          nationality?: string | null
           notes?: string | null
+          scope?: string
           size_bytes?: number | null
           storage_path: string
-          type: Database["public"]["Enums"]["doc_type"]
+          type: string
           uploaded_by: string
         }
         Update: {
+          category?: string
           created_at?: string
+          document_number?: string | null
           employee_id?: string
           expiry_date?: string | null
+          has_us_visa?: boolean | null
           id?: string
           issued_date?: string | null
           issuer?: string | null
           name?: string
+          nationality?: string | null
           notes?: string | null
+          scope?: string
           size_bytes?: number | null
           storage_path?: string
-          type?: Database["public"]["Enums"]["doc_type"]
+          type?: string
           uploaded_by?: string
         }
         Relationships: [
@@ -602,77 +664,143 @@ export type Database = {
         Row: {
           address: string | null
           avatar_url: string | null
+          bank_account_number: string | null
+          bank_name: string | null
+          city: string | null
+          contract_end_date: string | null
           contract_type: string | null
+          country: string | null
           created_at: string
           date_of_birth: string | null
           department_id: string | null
           email: string
+          emergency_contact_email: string | null
           emergency_contact_name: string | null
           emergency_contact_phone: string | null
           emergency_contact_relation: string | null
           employee_id: string | null
+          first_name: string | null
           full_name: string
           gender: string | null
+          health_insurance: boolean | null
           hire_date: string | null
           iban: string | null
           id: string
           job_title: string | null
+          languages: string[] | null
+          last_name: string | null
           manager_id: string | null
+          nationality: string | null
+          office: string | null
+          performance_evaluation_date: string | null
           personal_email: string | null
           phone: string | null
+          postal_code: string | null
+          probation_end_date: string | null
+          probation_start_date: string | null
+          probation_status: string | null
           role: Database["public"]["Enums"]["user_role"]
+          state_region: string | null
           status: Database["public"]["Enums"]["employee_status"]
+          street: string | null
+          timezone: string | null
           updated_at: string
+          work_arrangement: string | null
+          work_schedule: string | null
         }
         Insert: {
           address?: string | null
           avatar_url?: string | null
+          bank_account_number?: string | null
+          bank_name?: string | null
+          city?: string | null
+          contract_end_date?: string | null
           contract_type?: string | null
+          country?: string | null
           created_at?: string
           date_of_birth?: string | null
           department_id?: string | null
           email: string
+          emergency_contact_email?: string | null
           emergency_contact_name?: string | null
           emergency_contact_phone?: string | null
           emergency_contact_relation?: string | null
           employee_id?: string | null
+          first_name?: string | null
           full_name: string
           gender?: string | null
+          health_insurance?: boolean | null
           hire_date?: string | null
           iban?: string | null
           id: string
           job_title?: string | null
+          languages?: string[] | null
+          last_name?: string | null
           manager_id?: string | null
+          nationality?: string | null
+          office?: string | null
+          performance_evaluation_date?: string | null
           personal_email?: string | null
           phone?: string | null
+          postal_code?: string | null
+          probation_end_date?: string | null
+          probation_start_date?: string | null
+          probation_status?: string | null
           role?: Database["public"]["Enums"]["user_role"]
+          state_region?: string | null
           status?: Database["public"]["Enums"]["employee_status"]
+          street?: string | null
+          timezone?: string | null
           updated_at?: string
+          work_arrangement?: string | null
+          work_schedule?: string | null
         }
         Update: {
           address?: string | null
           avatar_url?: string | null
+          bank_account_number?: string | null
+          bank_name?: string | null
+          city?: string | null
+          contract_end_date?: string | null
           contract_type?: string | null
+          country?: string | null
           created_at?: string
           date_of_birth?: string | null
           department_id?: string | null
           email?: string
+          emergency_contact_email?: string | null
           emergency_contact_name?: string | null
           emergency_contact_phone?: string | null
           emergency_contact_relation?: string | null
           employee_id?: string | null
+          first_name?: string | null
           full_name?: string
           gender?: string | null
+          health_insurance?: boolean | null
           hire_date?: string | null
           iban?: string | null
           id?: string
           job_title?: string | null
+          languages?: string[] | null
+          last_name?: string | null
           manager_id?: string | null
+          nationality?: string | null
+          office?: string | null
+          performance_evaluation_date?: string | null
           personal_email?: string | null
           phone?: string | null
+          postal_code?: string | null
+          probation_end_date?: string | null
+          probation_start_date?: string | null
+          probation_status?: string | null
           role?: Database["public"]["Enums"]["user_role"]
+          state_region?: string | null
           status?: Database["public"]["Enums"]["employee_status"]
+          street?: string | null
+          timezone?: string | null
           updated_at?: string
+          work_arrangement?: string | null
+          work_schedule?: string | null
         }
         Relationships: [
           {
@@ -847,12 +975,12 @@ export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -876,11 +1004,11 @@ export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -901,11 +1029,11 @@ export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -926,11 +1054,11 @@ export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -943,11 +1071,11 @@ export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
+    : never) = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
