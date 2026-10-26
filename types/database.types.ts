@@ -935,7 +935,7 @@ export type Database = {
     Enums: {
       cycle_status: "draft" | "active" | "completed"
       doc_type: "contract" | "id" | "certificate" | "policy" | "other"
-      employee_status: "active" | "inactive" | "on_leave"
+      employee_status: "active" | "inactive" | "on_leave" | "onboarding" | "probation" | "notice_period" | "terminated"
       leave_status: "pending" | "approved" | "rejected" | "cancelled"
       leave_type:
         | "annual"
@@ -1089,7 +1089,7 @@ export const Constants = {
     Enums: {
       cycle_status: ["draft", "active", "completed"],
       doc_type: ["contract", "id", "certificate", "policy", "other"],
-      employee_status: ["active", "inactive", "on_leave"],
+      employee_status: ["active", "inactive", "on_leave", "onboarding", "probation", "notice_period", "terminated"],
       leave_status: ["pending", "approved", "rejected", "cancelled"],
       leave_type: [
         "annual",
